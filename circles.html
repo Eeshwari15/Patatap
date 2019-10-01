@@ -1,0 +1,94 @@
+<html>
+    <head>
+        <title>Circles</title>
+        <script type="text/javascript" src="paper-full.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.2/howler.js"></script>
+        
+        <link rel="stylesheet" type="text/css" href="circles.css">
+        <script type="text/paperscript" canvas="myCanvas">
+            var sound1 = new Howl({
+                src : ['audio/corona.mp3']
+              });
+              
+              var sound2 = new Howl({
+                src : ['audio/bubbles.mp3']
+              });
+              var sound3 = new Howl({
+                src : ['audio/pinwheel.mp3']
+              });
+            
+              var sound4= new Howl({
+                src : ['audio/splits.mp3']
+              });
+              var sound5 = new Howl({
+                src : ['audio/timer.mp3']
+              });
+              var sound6 = new Howl({
+                src : ['audio/strike.mp3']
+              });
+              var sound7 = new Howl({
+                src : ['audio/clay.mp3']
+              });
+              var sound8 = new Howl({
+                src : ['audio/flash-1.mp3']
+              });
+            
+            
+              
+            var circle=[];
+            function onKeyDown(event) {
+            
+            var maxPoint=new Point(view.size.width,view.size.height);
+            var randomPoint=Point.random();
+            var point=maxPoint * randomPoint;
+            var newCircle=new Path.Circle(point,500);
+            if(event.key==="a"){
+                sound1.play();
+                newCircle.fillColor="#16a085";
+            }
+            else if(event.key==="s"){
+                sound2.play();
+                newCircle.fillColor="purple";
+            }
+            else if(event.key==="0"||event.key==="1"||event.key==="2"||event.key==="3"||event.key==="4"||event.key==="5"||event.key==="6"||event.key==="7"||event.key==="8"||event.key==="9"){
+                sound3.play();
+                newCircle.fillColor="pink";
+            }
+            else if(event.key==="v"){
+                sound4.play();
+                newCircle.fillColor="yellow";
+            }
+            else if(event.key==="p"){
+                sound5.play();
+                newCircle.fillColor="red";
+            }
+            else if(event.key==="f"){
+                sound6.play();
+                newCircle.fillColor="blue";
+            }
+            else if(event.key==="r"){
+                sound7.play();
+                newCircle.fillColor="green";
+            }
+            else{
+                sound8.play();
+                newCircle.fillColor="orange";
+            }
+            circle.push(newCircle);
+            }
+
+            function onFrame(event){
+                for(var i=0;i<circle.length;i++){
+                    circle[i].fillColor.hue+=1;
+                    
+                circle[i].scale(.9);
+                }
+               
+            }
+           
+        </script>
+    </head>
+    <body>
+        <canvas id="myCanvas" resize></canvas>
+    </body>
+</html>
